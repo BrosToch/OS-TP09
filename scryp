@@ -1,0 +1,53 @@
+#!/bin/bash
+w=$1
+word=$2
+if [[ $w = '-e' ]];
+then
+    lc(){
+        case "$1" in
+               [A-z])
+               n=$(printf "%d" "'$1")
+               n=$((n+1))
+               printf \\$(printf "%o" "$n")
+               ;;
+               *)
+               printf "%s" "$1"
+               ;;
+               esac
+         }
+
+
+         for((i=0;i<${#word};i++))
+         do
+            ch="${word:$i:1}"
+            lc "$ch"
+         done
+echo ""
+
+fi
+
+if [[ $w = '-d' ]];
+then
+    lc(){
+        case "$1" in
+               [A-z])
+               n=$(printf "%d" "'$1")
+               n=$((n-1))
+               printf \\$(printf "%o" "$n")
+               ;;
+               *)
+               printf "%s" "$1"
+               ;;
+               esac
+         }
+
+
+         for((i=0;i<${#word};i++))
+         do
+            ch="${word:$i:1}"
+            lc "$ch"
+         done
+echo ""
+
+fi
+
